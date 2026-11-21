@@ -21,3 +21,12 @@ html[data-theme="dark"] .mobile-nav button.mobile-selected{color:#73dcb0}
 .theme-toggle{display:flex;align-items:center;justify-content:center;gap:7px;height:34px;padding:0 10px;border:1px solid #e6eaf0;border-radius:8px;background:#fff;color:#58677a;font-size:10px;font-weight:600;cursor:pointer}
 html[data-theme="dark"] .theme-toggle{background:#1b2736;border-color:#344256;color:#d9e3ef}
 @media(max-width:760px){.theme-toggle{width:34px;padding:0}.theme-toggle span{display:none}}
+html[data-theme="dark"] .welcome-row h1,html[data-theme="dark"] .page-content h2,html[data-theme="dark"] .page-content h3{color:#e7edf5}
+html[data-theme="dark"] .welcome-row p,html[data-theme="dark"] .eyebrow,html[data-theme="dark"] .page-footer,html[data-theme="dark"] .muted,html[data-theme="dark"] .search-box,html[data-theme="dark"] .passenger-name small,html[data-theme="dark"] .vehicle-details span,html[data-theme="dark"] .help-link,html[data-theme="dark"] .dispatcher-card,html[data-theme="dark"] .today{color:#a1afc0}
+html[data-theme="dark"] .vehicle-details b,html[data-theme="dark"] .capacity-number{color:#e7edf5}
+html[data-theme="dark"] .passenger-avatar{filter:brightness(.72) saturate(.8)}
+html[data-theme="dark"] .boarding-status{background:#392f1d;color:#f2c66e}
+html[data-theme="dark"] .boarding-status.boarded{background:#19382f;color:#73dcb0}
+html[data-theme="dark"] .occupancy-pill,html[data-theme="dark"] .check-count,html[data-theme="dark"] .verified{background:#19382f;color:#73dcb0;border-color:#285443}
+html[data-theme="dark"] .scan-view{background:#111c29;border-color:#344256;color:#a1afc0}
+html[data-theme="dark"] .scan-success{background:#19382f;color:#73dcb0}
