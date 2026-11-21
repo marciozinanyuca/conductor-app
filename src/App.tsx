@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Activity, ArrowDownRight, ArrowRight, BadgeCheck, Bus, CalendarDays, Check, CheckCircle2, ChevronRight, CircleHelp, Clock3, CloudSun, Gauge, Home, MapPin, Menu, Navigation, Phone, QrCode, Route, ShieldCheck, Users, UserRound, X } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { Activity, ArrowDownRight, ArrowRight, BadgeCheck, Bus, CalendarDays, Check, CheckCircle2, ChevronRight, CircleHelp, Clock3, CloudSun, Gauge, Home, MapPin, Menu, Moon, Navigation, Phone, QrCode, Route, ShieldCheck, Sun, Users, UserRound, X } from 'lucide-react'
 
 type Page = 'Inicio' | 'Escáner' | 'Pasajeros' | 'Mi Perfil'
 
@@ -12,7 +12,13 @@ function App() {
   const [active, setActive] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [scanResult, setScanResult] = useState(false)
+  const [darkMode, setDarkMode] = useState(() => localStorage.getItem('conductor-theme') === 'dark')
   const title = page === 'Inicio' ? 'Centro de operaciones' : page
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = darkMode ? 'dark' : 'light'
+    localStorage.setItem('conductor-theme', darkMode ? 'dark' : 'light')
+  }, [darkMode])
 
   const startRoute = () => {
     setActive(true)
@@ -28,7 +34,7 @@ function App() {
     </aside>
     {menuOpen && <button className="scrim" aria-label="Cerrar menú" onClick={() => setMenuOpen(false)} />}
     <div className="main-column">
-      <header className="topbar"><button className="icon-button menu-toggle" aria-label="Abrir menú" onClick={() => setMenuOpen(true)}><Menu size={21} /></button><div className="breadcrumb">Operaciones <ChevronRight size={14} /> <b>{title}</b></div><div className="top-actions"><span className="today"><CalendarDays size={16} /> Lunes, 21 de noviembre</span><span className="connection"><i /> Sistema conectado</span><button className="avatar top-avatar" aria-label="Perfil de Marco Quispe" onClick={() => setPage('Mi Perfil')}>MQ</button></div></header>
+      <header className="topbar"><button className="icon-button menu-toggle" aria-label="Abrir menú" onClick={() => setMenuOpen(true)}><Menu size={21} /></button><div className="breadcrumb">Operaciones <ChevronRight size={14} /> <b>{title}</b></div><div className="top-actions"><span className="today"><CalendarDays size={16} /> Lunes, 21 de noviembre</span><span className="connection"><i /> Sistema conectado</span><button className="theme-toggle" onClick={() => setDarkMode(!darkMode)} aria-label={darkMode ? 'Activar modo claro' : 'Activar modo oscuro'} title={darkMode ? 'Modo claro' : 'Modo oscuro'}>{darkMode ? <Sun size={18} /> : <Moon size={18} />}<span>{darkMode ? 'Claro' : 'Oscuro'}</span></button><button className="avatar top-avatar" aria-label="Perfil de Marco Quispe" onClick={() => setPage('Mi Perfil')}>MQ</button></div></header>
       <main className="page-content">
         <div className="welcome-row"><div><div className="eyebrow">TURNO MAÑANA <span>·</span> 06:00 – 14:00</div><h1>{page === 'Inicio' ? <>Buenos días, Marco <span className="wave">☀</span></> : page}</h1><p>{page === 'Inicio' ? 'Aquí tienes el resumen de tu servicio de hoy.' : page === 'Escáner' ? 'Valida los fotochecks de los pasajeros al abordar.' : page === 'Pasajeros' ? 'Consulta el manifiesto y el aforo de tu unidad.' : 'Información personal y detalles de tu unidad asignada.'}</p></div><div className="status-pill"><i /> {active ? 'RUTA EN CURSO' : 'PREVIO A LA SALIDA'}</div></div>
         {page === 'Inicio' && <>
